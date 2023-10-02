@@ -16,11 +16,11 @@ MONGODB_URL=your mongoDB url
 
 ### User Authentication
 
--> Register:- (POST) https://ill-erin-shark-slip.cyclic.cloud/users/register
+# Register:- (POST) https://ill-erin-shark-slip.cyclic.cloud/users/register
 
--> Login:- (POST) https://ill-erin-shark-slip.cyclic.cloud/users/login
+# Login:- (POST) https://ill-erin-shark-slip.cyclic.cloud/users/login
 
--> Logout:- (GET) https://ill-erin-shark-slip.cyclic.cloud/users/logout
+# Logout:- (GET) https://ill-erin-shark-slip.cyclic.cloud/users/logout
 
 ### Categories
 
