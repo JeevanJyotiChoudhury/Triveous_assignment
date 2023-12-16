@@ -4,11 +4,13 @@ const cors = require("cors");
 const { connection } = require("./db");
 const { clientRouter } = require("./routes/client.route");
 const { developerRouter } = require("./routes/developer.route");
+const { skillRouter } = require("./routes/skill.route");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use("/skills", skillRouter);
 app.use("/clients", clientRouter);
 app.use("/developer", developerRouter);
 

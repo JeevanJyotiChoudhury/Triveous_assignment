@@ -1,7 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { DeveloperModel } = require("../models/developer.model");
+const {
+  DeveloperModel,
+  DeveloperOnboardingModel,
+} = require("../models/developer.model");
+const { SkillModel } = require("../models/skill.model");
+const { auth } = require("../middleware/auth.middleware");
 
 const developerRouter = express.Router();
 
@@ -62,16 +67,46 @@ developerRouter.post("/login", async (req, res) => {
   }
 });
 
+developerRouter.use(auth);
+//onboarding
+developerRouter.post("/developer/onboarding",auth, async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    skills,
+    education,
+    professionalExperience,
+  } = req.body;
+
+  try {
+    const validSkills = await SkillModel.find({ _id: { $in: skills } });
+    if (validSkills.length !== skills.length) {
+      return res.status(400).json({ message: "Invalid skills provided." });
+    }
+
+    const developer = new DeveloperOnboardingModel({
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      skills,
+      education,
+      professionalExperience,
+    });
+
+    const savedDeveloper = await developer.save();
+    res.json({ developer: savedDeveloper });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 //logout
 developerRouter.get("/logout", (req, res) => {
-  const token = req.headers.authorization?.split(" ")[1];
   try {
-    jwt.verify(token, "TOKEN", (err, decoded) => {
-      if (err) {
-        return res.status(400).json({ error: "Invalid token." });
-      }
-      res.status(200).json({ msg: "Developer has been logged out" });
-    });
+    res.status(200).json({ msg: "Developer has been logged out" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
