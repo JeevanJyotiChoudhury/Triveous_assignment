@@ -69,7 +69,7 @@ developerRouter.post("/login", async (req, res) => {
 
 developerRouter.use(auth);
 //onboarding
-developerRouter.post("/developer/onboarding",auth, async (req, res) => {
+developerRouter.post("/onboarding",auth, async (req, res) => {
   const {
     firstName,
     lastName,
