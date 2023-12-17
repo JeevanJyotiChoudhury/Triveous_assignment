@@ -81,7 +81,7 @@ const developerOnboardingSchema = mongoose.Schema(
     lastName: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    skills: [{ type: mongoose.Schema.Types.ObjectId, ref: "Skill" }],
+    skills: [{ type: mongoose.Schema.Types.ObjectId, ref: "Skill" }], 
     professionalExperiences: [
       {
         companyName: { type: String, required: true },
@@ -106,7 +106,7 @@ const developerOnboardingSchema = mongoose.Schema(
 const DeveloperModel = mongoose.model("Developer", developerSchema);
 
 const DeveloperOnboardingModel = mongoose.model(
-  "DeveloperOnborded",
+  "DeveloperOnboarded",
   developerOnboardingSchema
 );
 

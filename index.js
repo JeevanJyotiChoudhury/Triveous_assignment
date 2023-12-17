@@ -9,13 +9,14 @@ const { skillRouter } = require("./routes/skill.route");
 const app = express();
 app.use(express.json());
 
-const corsRes = {
-  origin: "*",
+const corsOptions = {
+  origin: "http://localhost:3000",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
+  optionsSuccessStatus: 204,
 };
 
-app.use(cors(corsRes));
+app.use(cors(corsOptions));
 
 app.use("/skills", skillRouter);
 app.use("/clients", clientRouter);

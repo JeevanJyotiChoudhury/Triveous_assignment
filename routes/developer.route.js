@@ -76,8 +76,8 @@ developerRouter.post("/onboarding",auth, async (req, res) => {
     phoneNumber,
     email,
     skills,
-    education,
-    professionalExperience,
+    professionalExperiences,
+    educationalExperiences,
   } = req.body;
 
   try {
@@ -92,8 +92,8 @@ developerRouter.post("/onboarding",auth, async (req, res) => {
       phoneNumber,
       email,
       skills,
-      education,
-      professionalExperience,
+      professionalExperiences,
+      educationalExperiences
     });
 
     const savedDeveloper = await developer.save();
