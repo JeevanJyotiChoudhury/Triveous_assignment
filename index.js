@@ -8,7 +8,14 @@ const { skillRouter } = require("./routes/skill.route");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+const corsRes = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+
+app.use(cors(corsRes));
 
 app.use("/skills", skillRouter);
 app.use("/clients", clientRouter);
